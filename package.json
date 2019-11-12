@@ -16,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/Davidlevens/burger/issues"
   },
-  "homepage": "https://github.com/Davidlevens/burger#readme"
+  "homepage": "https://github.com/Davidlevens/burger#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "handlebars": "^4.5.1",
+    "mysql": "^2.17.1"
+  }
 }
