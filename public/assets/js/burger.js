@@ -1,37 +1,23 @@
-// Make sure we wait to attach our handlers until the DOM is fully loaded.
-$(function() {
-      
-    $(".create-form").on("submit", function(event) {
-      // Make sure to preventDefault on a submit event.
-      event.preventDefault();
-  
-      var newBurger = {
-        burger_name: $("#ca").val().trim(),
-      };
-  
-      // Send the POST request.
-      $.ajax("/api/burgers", {
-        type: "POST",
-        data: newBurger
-      }).then(
-        function() {
-          console.log("created new burger");
-          // Reload the page to get the updated list
-          location.reload();
-        }
-      );
-    });
-    $(".devourButton").click((event)=>{
-      console.log(event.target);
-  
-      $.ajax("/api/burgers/"+event.target.value,{
-        type:"PUT",
-        data:{
-          devoured:1
-        }
-      }).then(()=>{
-        $(`.${event.target.className}`).remove();
-        location.reload();
-      })
-    })
+// make a POST request to add burger to the menu
+$("#addForm").submit(e => {
+  e.preventDefault();
+
+  const burger = { 
+    burgerName: $("#burgerName").val().trim() 
+  };
+
+  $.post("/api/burgers", burger, () => {
+    location.reload();
   });
+});
+
+// make a PUT request to devour burger
+$(".devourBtns").on("click", (e) => {
+  const burgerId = $(e.target).attr("data-id");
+
+  $.ajax(`/api/burgers/${burgerId}`, {
+    type: "PUT"
+  }).then(() => {
+    location.reload();
+  });
+});

@@ -1,53 +1,54 @@
-<section class="content">
+<!-- Logo and Title -->
+<div class="row">
+  <div class="col-12">
+    <img class="logo" src="/assets/img/burger1.jpg" alt="burger">
+    <h1 class="title">Eat Da Burger!</h1>
+  </div>
+</div>
 
-  <h1 class="pageHead">Eat Da Burger!!</h1>
-  <div class="burgerListsSection">
-
-    <ul class="burgerList">
-      {{#each burgers}}
-      {{#unless devoured}}
-      <div class="burgerItem">
-        <span>{{burger_name}}</span>
+<!-- Form to Submit Burger Names -->
+<div class="row">
+  <div class="col-12">
+    <form id="addForm">
+      <div class="form-group">
+        <label for="burgerName">Enter a burger name to add it to the menu:</label>
+        <input id="burgerName" class="form-control" type="text" placeholder="What's your pleasure?" required>
       </div>
-      <br>
-      {{/unless}}
-      {{/each}}
-    </ul>
+      <button type="submit">Add to Menu</button>
+    </form>
+  </div>
+</div>
 
-    <ul class="burgerList">
-      {{#each burgers}}
-      {{#unless devoured}}
-      <button class="devourButton" value = {{id}}>
-        Devour!
-      </button>
-      <br>
-      {{/unless}}
-      {{/each}}
-    </ul>
-
-    <ul class="burgerList">
-      {{#each burgers}}
-      {{#if devoured}}
-      <div class="burgerItem devoured">
-        <span>{{burger_name}}</span>
+<div class="row">
+  <!-- Burger Menu -->
+  <div class="col-12 col-md-6">
+    <div class="card">
+      <div class="card-header">On the Menu</div>
+      <div class="card-body">
+        <ul>
+          {{#each burgers}}
+            {{#unless devoured}}
+              {{> burgers/burgerBlock devoured=false}}
+            {{/unless}}
+          {{/each}}
+        </ul>
       </div>
-      <br>
-      {{/if}}
-      {{/each}}
-    </ul>
+    </div>
   </div>
 
-
-  <h2>Add a Burger</h2>
-  <form class="create-form">
-
-    <div class="form-group">
-      <label for="ca">Burger Name:</label>
-      <input type="text" id="ca" name="name">
+  <!-- Devoured Burgers List -->
+  <div class="col-12 col-md-6">
+    <div class="card devoured-card">
+      <div class="card-header devoured-header">Devoured Burgers</div>
+      <div class="card-body">
+        <ul>
+          {{#each burgers}}
+            {{#if devoured}}
+              {{> burgers/burgerBlock devoured=true}}
+            {{/if}}
+          {{/each}}
+        </ul>
+      </div>
     </div>
-
-
-
-    <button type="submit">Add Burger</button>
-  </form>
-</section>
+  </div>
+</div>

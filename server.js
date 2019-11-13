@@ -1,29 +1,23 @@
-var express = require("express");
+// setup express app
+const express = require("express");
+const app = express();
+const PORT = process.env.PORT || 8080;
 
-var PORT = process.env.PORT || 8080;
-
-var app = express();
-
-// Serve static content for the app from the "public" directory in the application directory.
+// mount express middlewares
 app.use(express.static("public"));
-
-// Parse application body
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// Set Handlebars.
-var exphbs = require("express-handlebars");
-
+// setup handlebars for templating
+const exphbs = require("express-handlebars");
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-// Import routes and give the server access to them.
-var routes = require("./controllers/burgers_controller.js");
-
+// import routes and give server access to them
+const routes = require("./controllers/burgers_controller.js");
 app.use(routes);
 
-// Start our server so that it can begin listening to client requests.
+// start server
 app.listen(PORT, function() {
-  // Log (server-side) when our server has started
-  console.log("Server listening on: http://localhost:" + PORT);
+  console.log(`Server listening on PORT ${PORT}`);
 });
