@@ -10,7 +10,7 @@ Feel free to use some or all of this code if you're trying to complete a similar
 
 <h3> App screenshot </h3>
 
-![alt text](https://raw.githubusercontent.com/Davidlevens/burger/master/public/assets/img/demo.jpg "Burger App")
+![alt text](https://raw.githubusercontent.com/Davidlevens/burger/master/public/assets/img/demo.png "Burger App")
 
 <h2> Project overview</h2>
 Eat Da Burger is a full stack application utilizing MySQL, Node, Express, Handlebars and a homemade ORM. MVC design pattern implemented. Node and MySQL query and route data in the app, and Handlebars generates the HTML.
